@@ -10,6 +10,9 @@ public interface IRepositoryBase<T> where T : class
     public Task<List<T>> GetAsync(Expression<Func<T, bool>> expression, bool trackChanges);
     public void Create(T entity);
     public Task CreateAsync(T entity);
+    public Task MultiCreateAsync(List<T> entities);
     public void Update(T entity);
     public void Delete(T entity);
+    public void Save();
+    public Task SaveAsync();
 }

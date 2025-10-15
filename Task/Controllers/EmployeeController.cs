@@ -47,15 +47,33 @@ public class EmployeeController : ControllerBase
         }
     }
 
-    [HttpPost]
-    public IActionResult InsertEmployee(EmployeeDTO employeeDto)
+    [HttpPost("single")]
+    public async Task<IActionResult> InsertEmployee(EmployeeDTO employeeDto)
     {
         try
         {
             if (!TryValidateModel(ModelState)) return BadRequest(ModelState);
 
             var result =  _employeeRepository.InsertEmployee(employeeDto);
-            _employeeRepository.Save();
+            await _employeeRepository.SaveAsync();
+
+            return Ok(result);
+        }
+        catch (Exception error)
+        {
+            return BadRequest(error);
+        }
+    }
+    
+    [HttpPost("bulk")]
+    public async Task<IActionResult> InsertEmployees(List<EmployeeDTO> employeeDtos)
+    {
+        try
+        {
+            if (!TryValidateModel(ModelState)) return BadRequest(ModelState);
+
+            var result =  _employeeRepository.InsertEmployees(employeeDtos);
+            await _employeeRepository.SaveAsync();
 
             return Ok(result);
         }
@@ -66,12 +84,12 @@ public class EmployeeController : ControllerBase
     }
 
     [HttpPut]
-    public IActionResult UpdateEmployee(int id, EmployeeDTO employeeDto)
+    public async Task<IActionResult> UpdateEmployee(int id, EmployeeDTO employeeDto)
     {
         try
         {
             var result =  _employeeRepository.UpdateEmployee(id, employeeDto);
-            _employeeRepository.Save();
+            await _employeeRepository.SaveAsync();
             return Ok(result);
         }
         catch (Exception error)
@@ -81,12 +99,12 @@ public class EmployeeController : ControllerBase
     }
 
     [HttpDelete]
-    public IActionResult DeleteEmployee(int id)
+    public async Task<IActionResult> DeleteEmployee(int id)
     {
         try
         {
             var result =  _employeeRepository.DeleteEmployee(id);
-            _employeeRepository.Save();
+            await _employeeRepository.SaveAsync();
             return Ok(result);
         }
         catch (Exception error)

@@ -46,6 +46,37 @@ public class EmployeeRepository : RepositoryBase<EmployeeModel>, IEmployeeReposi
             throw new ApplicationException(error.Message);
         }
     }
+    
+    public async Task<JSONResponseDTO> InsertEmployees(List<EmployeeDTO> employeeDtos)
+    {
+        try
+        {
+            if (!employeeDtos.Any())
+            {
+                return new JSONResponseDTO
+                {
+                    StatusCode = HttpStatusCode.BadRequest,
+                    Message = "No data to insert"
+                };
+            }
+            
+            //Converting to Model one by one
+            var models = employeeDtos.Select(employeeDto => _mapper.Map<EmployeeModel>(employeeDto)).ToList();
+            
+            //Bulk Insert
+            await MultiCreateAsync(models);
+
+            return new JSONResponseDTO
+            {
+                StatusCode = HttpStatusCode.OK,
+                Message = "Inserted"
+            };
+        }
+        catch (Exception error)
+        {
+            throw new ApplicationException(error.Message);
+        }
+    }
 
     public JSONResponseDTO UpdateEmployee(int id,EmployeeDTO employeeDto)
     {
@@ -94,10 +125,5 @@ public class EmployeeRepository : RepositoryBase<EmployeeModel>, IEmployeeReposi
         {
             throw new ApplicationException(error.Message);
         }
-    }
-
-    public void Save()
-    {
-        _appDBContext.SaveChanges();
     }
 }

@@ -285,3 +285,4 @@ C:\Users\ahrcr\source\repos\Task\Task\obj\Debug\net8.0\refint\MyApp.dll
 C:\Users\ahrcr\source\repos\Task\Task\obj\Debug\net8.0\MyApp.pdb
 C:\Users\ahrcr\source\repos\Task\Task\obj\Debug\net8.0\MyApp.genruntimeconfig.cache
 C:\Users\ahrcr\source\repos\Task\Task\obj\Debug\net8.0\ref\MyApp.dll
+C:\Users\ahrcr\source\repos\Task\Task\obj\Debug\net8.0\MyApp.sourcelink.json

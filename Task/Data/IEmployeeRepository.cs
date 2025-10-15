@@ -11,9 +11,10 @@ public interface IEmployeeRepository : IRepositoryBase<EmployeeModel>
 
     public JSONResponseDTO InsertEmployee(EmployeeDTO employeeDto);
 
+    public Task<JSONResponseDTO> InsertEmployees(List<EmployeeDTO> employeeDtos);
+
     public JSONResponseDTO UpdateEmployee(int id,EmployeeDTO employeeDto);
 
     public JSONResponseDTO DeleteEmployee(int id);
 
-    public void Save();
 }

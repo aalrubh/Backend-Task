@@ -143,4 +143,26 @@ public class RepositoryBase<T> : IRepositoryBase<T> where T : class
             throw new ApplicationException(error.Message);
         }
     }
+    
+    public async Task MultiCreateAsync(List<T> entities)
+    {
+        try
+        {
+            await _appDBContext.Set<T>().AddRangeAsync(entities);
+        }
+        catch (Exception error)
+        {
+            throw new ApplicationException(error.Message);
+        }
+    }
+    
+    public void Save()
+    {
+        _appDBContext.SaveChanges();
+    }
+    
+    public async Task SaveAsync()
+    {
+        await _appDBContext.SaveChangesAsync();
+    }
 }
