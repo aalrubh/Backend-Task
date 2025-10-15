@@ -155,6 +155,31 @@ public class RepositoryBase<T> : IRepositoryBase<T> where T : class
             throw new ApplicationException(error.Message);
         }
     }
+
+    public void MultiUpdate(List<T> entities)
+    {
+        try
+        {
+            _appDBContext.Set<T>().UpdateRange(entities);
+        }
+        catch (Exception error)
+        {
+            throw new ApplicationException(error.Message);
+        }
+    }
+
+    public void MultiDelete(List<T> entities)
+    {
+        try
+        {
+             _appDBContext.Set<T>().RemoveRange(entities);
+        }
+        catch (Exception error)
+        {
+            throw new ApplicationException(error.Message);
+        }
+    }
+
     
     public void Save()
     {

@@ -126,4 +126,69 @@ public class EmployeeRepository : RepositoryBase<EmployeeModel>, IEmployeeReposi
             throw new ApplicationException(error.Message);
         }
     }
+
+    public JSONResponseDTO UpdateEmployees(List<int> ids, List<EmployeeDTO> employeeDtos)
+    {
+        try
+        {
+            
+            if (!employeeDtos.Any() || !ids.Any() || ids.Count != employeeDtos.Count)
+            {
+                return new JSONResponseDTO
+                {
+                    StatusCode = HttpStatusCode.BadRequest,
+                    Message = "No data to insert"
+                };
+            }
+            
+            //Converting to Model one by one
+            var models = employeeDtos.Select((dto, idx) => {
+                var model = _mapper.Map<EmployeeModel>(dto);
+                model.Id = ids[idx];
+                return model;
+            }).ToList();
+
+            
+            MultiUpdate(models);
+            
+
+            return new JSONResponseDTO
+            {
+                StatusCode = HttpStatusCode.OK,
+                Message = "Updated"
+            };
+        }
+        catch (Exception error)
+        {
+            throw new ApplicationException(error.Message);
+        }
+    }
+
+    public JSONResponseDTO DeleteEmployees(List<int> ids)
+    {
+        try
+        {
+            var models = Get(e => ids.Contains(e.Id), false).ToList();
+            if (!models.Any())
+            {
+                return new JSONResponseDTO
+                {
+                    StatusCode = HttpStatusCode.NotFound,
+                    Message = "Not Found"
+                };
+            }
+            
+            MultiDelete(models);
+            
+            return new JSONResponseDTO
+            {
+                StatusCode = HttpStatusCode.OK,
+                Message = "Deleted"
+            };
+        }
+        catch (Exception error)
+        {
+            throw new ApplicationException(error.Message);
+        }
+    }
 }

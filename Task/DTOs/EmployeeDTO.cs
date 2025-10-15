@@ -8,7 +8,7 @@ public class EmployeeDTO
 {
     [Required]
     [Column(TypeName = "nvarchar(100)")]
-    public string Name { get; set; }
+    public required string Name { get; set; }
   
     [Column(TypeName = "nvarchar(100)")]
     public string? Position { get; set; }

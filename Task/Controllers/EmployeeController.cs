@@ -83,8 +83,11 @@ public class EmployeeController : ControllerBase
         }
     }
 
-    [HttpPut]
-    public async Task<IActionResult> UpdateEmployee(int id, EmployeeDTO employeeDto)
+    [HttpPut("single/{id}")]
+    public async Task<IActionResult> UpdateEmployee(
+        [FromRoute] int id,
+        [FromBody] EmployeeDTO employeeDto
+    )
     {
         try
         {
@@ -97,13 +100,45 @@ public class EmployeeController : ControllerBase
             return BadRequest(error.Message);
         }
     }
+    
+    [HttpPut("bulk")]
+    public async Task<IActionResult> UpdateEmployees([FromBody] UpdateEmployeesRequest request)
+    {
+        try
+        {
+            var result =  _employeeRepository.UpdateEmployees(request.Ids, request.EmployeeDtos);
+            await _employeeRepository.SaveAsync();
+            return Ok(result);
+        }
+        catch (Exception error)
+        {
+            return BadRequest(error.Message);
+        }
+    }
+    
+    
 
-    [HttpDelete]
+    [HttpDelete("single")]
     public async Task<IActionResult> DeleteEmployee(int id)
     {
         try
         {
             var result =  _employeeRepository.DeleteEmployee(id);
+            await _employeeRepository.SaveAsync();
+            return Ok(result);
+        }
+        catch (Exception error)
+        {
+            return BadRequest(error.Message);
+        }
+    }
+    
+    [HttpDelete("bulk")]
+    public async Task<IActionResult> DeleteEmployees(List<int> ids)
+    {
+        try
+        {
+            var result =  _employeeRepository.DeleteEmployees(ids);
             await _employeeRepository.SaveAsync();
             return Ok(result);
         }

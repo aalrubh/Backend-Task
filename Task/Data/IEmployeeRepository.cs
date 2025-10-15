@@ -16,5 +16,11 @@ public interface IEmployeeRepository : IRepositoryBase<EmployeeModel>
     public JSONResponseDTO UpdateEmployee(int id,EmployeeDTO employeeDto);
 
     public JSONResponseDTO DeleteEmployee(int id);
+    
+    public JSONResponseDTO UpdateEmployees(List<int> ids,List<EmployeeDTO> employeeDtos);
+    
+    public JSONResponseDTO DeleteEmployees(List<int> ids);
+
+
 
 }
