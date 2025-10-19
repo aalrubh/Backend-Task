@@ -9,7 +9,7 @@ public class EmployeeRepository : RepositoryBase<EmployeeModel>, IEmployeeReposi
 {
     private readonly IMapper _mapper;
 
-    public EmployeeRepository(AppDBContext appDBContext, IMapper mapper) : base(appDBContext)
+    public EmployeeRepository(AppDbContext appDbContext, IMapper mapper) : base(appDbContext)
     {
         _mapper = mapper;
     }
@@ -131,7 +131,6 @@ public class EmployeeRepository : RepositoryBase<EmployeeModel>, IEmployeeReposi
     {
         try
         {
-            
             if (!employeeDtos.Any() || !ids.Any() || ids.Count != employeeDtos.Count)
             {
                 return new JSONResponseDTO

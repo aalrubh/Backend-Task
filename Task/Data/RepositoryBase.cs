@@ -5,11 +5,11 @@ namespace MyApp.Data;
 
 public class RepositoryBase<T> : IRepositoryBase<T> where T : class
 {
-    protected readonly AppDBContext _appDBContext;
+    private readonly AppDbContext _appDbContext;
 
-    public RepositoryBase(AppDBContext appDBContext)
+    public RepositoryBase(AppDbContext appDbContext)
     {
-        _appDBContext = appDBContext;
+        _appDbContext = appDbContext;
     }
 
     public IQueryable<T> GetAll(bool trackChanges)
@@ -18,12 +18,12 @@ public class RepositoryBase<T> : IRepositoryBase<T> where T : class
         {
             if (trackChanges)
             {
-                var response = _appDBContext.Set<T>();
+                var response = _appDbContext.Set<T>();
                 return response;
             }
             else
             {
-                var response = _appDBContext.Set<T>().AsNoTracking();
+                var response = _appDbContext.Set<T>().AsNoTracking();
                 return response;
             }
         }
@@ -39,12 +39,12 @@ public class RepositoryBase<T> : IRepositoryBase<T> where T : class
         {
             if (trackChanges)
             {
-                var response = await _appDBContext.Set<T>().AsNoTracking().ToListAsync();
+                var response = await _appDbContext.Set<T>().AsNoTracking().ToListAsync();
                 return response;
             }
             else
             {
-                var response = await _appDBContext.Set<T>().ToListAsync();
+                var response = await _appDbContext.Set<T>().ToListAsync();
                 return response;
             }
         }
@@ -60,12 +60,12 @@ public class RepositoryBase<T> : IRepositoryBase<T> where T : class
         {
             if (trackChanges)
             {
-                var response = _appDBContext.Set<T>().Where(expression);
+                var response = _appDbContext.Set<T>().Where(expression);
                 return response;
             }
             else
             {
-                var response = _appDBContext.Set<T>().Where(expression).AsNoTracking();
+                var response = _appDbContext.Set<T>().Where(expression).AsNoTracking();
                 return response;
             }
         }
@@ -81,12 +81,12 @@ public class RepositoryBase<T> : IRepositoryBase<T> where T : class
         {
             if (trackChanges)
             {
-                var response = await _appDBContext.Set<T>().Where(expression).AsNoTracking().ToListAsync();
+                var response = await _appDbContext.Set<T>().Where(expression).AsNoTracking().ToListAsync();
                 return response;
             }
             else
             {
-                var response = await _appDBContext.Set<T>().Where(expression).ToListAsync();
+                var response = await _appDbContext.Set<T>().Where(expression).ToListAsync();
                 return response;
             }
         }
@@ -100,7 +100,7 @@ public class RepositoryBase<T> : IRepositoryBase<T> where T : class
     {
         try
         {
-            _appDBContext.Set<T>().Update(entity);
+            _appDbContext.Set<T>().Update(entity);
         }
         catch (Exception error)
         {
@@ -112,7 +112,7 @@ public class RepositoryBase<T> : IRepositoryBase<T> where T : class
     {
         try
         {
-            _appDBContext.Set<T>().Add(entity);
+            _appDbContext.Set<T>().Add(entity);
         }
         catch (Exception error)
         {
@@ -124,7 +124,7 @@ public class RepositoryBase<T> : IRepositoryBase<T> where T : class
     {
         try
         {
-            _appDBContext.Set<T>().Remove(entity);
+            _appDbContext.Set<T>().Remove(entity);
         }
         catch (Exception error)
         {
@@ -136,7 +136,7 @@ public class RepositoryBase<T> : IRepositoryBase<T> where T : class
     {
         try
         {
-            await _appDBContext.Set<T>().AddAsync(entity);
+            await _appDbContext.Set<T>().AddAsync(entity);
         }
         catch (Exception error)
         {
@@ -148,7 +148,7 @@ public class RepositoryBase<T> : IRepositoryBase<T> where T : class
     {
         try
         {
-            await _appDBContext.Set<T>().AddRangeAsync(entities);
+            await _appDbContext.Set<T>().AddRangeAsync(entities);
         }
         catch (Exception error)
         {
@@ -160,7 +160,7 @@ public class RepositoryBase<T> : IRepositoryBase<T> where T : class
     {
         try
         {
-            _appDBContext.Set<T>().UpdateRange(entities);
+            _appDbContext.Set<T>().UpdateRange(entities);
         }
         catch (Exception error)
         {
@@ -172,7 +172,7 @@ public class RepositoryBase<T> : IRepositoryBase<T> where T : class
     {
         try
         {
-             _appDBContext.Set<T>().RemoveRange(entities);
+             _appDbContext.Set<T>().RemoveRange(entities);
         }
         catch (Exception error)
         {
@@ -183,11 +183,11 @@ public class RepositoryBase<T> : IRepositoryBase<T> where T : class
     
     public void Save()
     {
-        _appDBContext.SaveChanges();
+        _appDbContext.SaveChanges();
     }
     
     public async Task SaveAsync()
     {
-        await _appDBContext.SaveChangesAsync();
+        await _appDbContext.SaveChangesAsync();
     }
 }
