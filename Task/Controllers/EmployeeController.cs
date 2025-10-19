@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using MyApp.Data;
 using MyApp.DTOs;
-using Newtonsoft.Json;
 
 namespace MyApp.Controllers;
 
@@ -54,7 +53,7 @@ public class EmployeeController : ControllerBase
         {
             if (!TryValidateModel(ModelState)) return BadRequest(ModelState);
 
-            var result =  _employeeRepository.InsertEmployee(employeeDto);
+            var result = _employeeRepository.InsertEmployee(employeeDto);
             await _employeeRepository.SaveAsync();
 
             return Ok(result);
@@ -64,7 +63,7 @@ public class EmployeeController : ControllerBase
             return BadRequest(error);
         }
     }
-    
+
     [HttpPost("bulk")]
     public async Task<IActionResult> InsertEmployees(List<EmployeeDTO> employeeDtos)
     {
@@ -72,7 +71,7 @@ public class EmployeeController : ControllerBase
         {
             if (!TryValidateModel(ModelState)) return BadRequest(ModelState);
 
-            var result =  _employeeRepository.InsertEmployees(employeeDtos);
+            var result = _employeeRepository.InsertEmployees(employeeDtos);
             await _employeeRepository.SaveAsync();
 
             return Ok(result);
@@ -91,7 +90,7 @@ public class EmployeeController : ControllerBase
     {
         try
         {
-            var result =  _employeeRepository.UpdateEmployee(id, employeeDto);
+            var result = _employeeRepository.UpdateEmployee(id, employeeDto);
             await _employeeRepository.SaveAsync();
             return Ok(result);
         }
@@ -100,13 +99,13 @@ public class EmployeeController : ControllerBase
             return BadRequest(error.Message);
         }
     }
-    
+
     [HttpPut("bulk")]
     public async Task<IActionResult> UpdateEmployees([FromBody] UpdateEmployeesRequest request)
     {
         try
         {
-            var result =  _employeeRepository.UpdateEmployees(request.Ids, request.EmployeeDtos);
+            var result = _employeeRepository.UpdateEmployees(request.Ids, request.EmployeeDtos);
             await _employeeRepository.SaveAsync();
             return Ok(result);
         }
@@ -115,15 +114,14 @@ public class EmployeeController : ControllerBase
             return BadRequest(error.Message);
         }
     }
-    
-    
+
 
     [HttpDelete("single")]
     public async Task<IActionResult> DeleteEmployee(int id)
     {
         try
         {
-            var result =  _employeeRepository.DeleteEmployee(id);
+            var result = _employeeRepository.DeleteEmployee(id);
             await _employeeRepository.SaveAsync();
             return Ok(result);
         }
@@ -132,13 +130,13 @@ public class EmployeeController : ControllerBase
             return BadRequest(error.Message);
         }
     }
-    
+
     [HttpDelete("bulk")]
     public async Task<IActionResult> DeleteEmployees(List<int> ids)
     {
         try
         {
-            var result =  _employeeRepository.DeleteEmployees(ids);
+            var result = _employeeRepository.DeleteEmployees(ids);
             await _employeeRepository.SaveAsync();
             return Ok(result);
         }

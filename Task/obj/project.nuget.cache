@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "WpgVyG5Qy+U=",
+  "dgSpecHash": "awyM9INaUys=",
   "success": true,
   "projectFilePath": "C:\\Users\\ahrcr\\source\\repos\\Task\\Task\\MyApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ahrcr\\.nuget\\packages\\automapper\\15.0.1\\automapper.15.0.1.nupkg.sha512",
     "C:\\Users\\ahrcr\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\ahrcr\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",
+    "C:\\Users\\ahrcr\\.nuget\\packages\\dapper\\2.1.66\\dapper.2.1.66.nupkg.sha512",
     "C:\\Users\\ahrcr\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",
     "C:\\Users\\ahrcr\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\ahrcr\\.nuget\\packages\\humanizer.core.af\\2.14.1\\humanizer.core.af.2.14.1.nupkg.sha512",
@@ -132,6 +133,7 @@
     "C:\\Users\\ahrcr\\.nuget\\packages\\nuget.projectmodel\\6.11.0\\nuget.projectmodel.6.11.0.nupkg.sha512",
     "C:\\Users\\ahrcr\\.nuget\\packages\\nuget.protocol\\6.11.0\\nuget.protocol.6.11.0.nupkg.sha512",
     "C:\\Users\\ahrcr\\.nuget\\packages\\nuget.versioning\\6.11.0\\nuget.versioning.6.11.0.nupkg.sha512",
+    "C:\\Users\\ahrcr\\.nuget\\packages\\sqlkata\\4.0.1\\sqlkata.4.0.1.nupkg.sha512",
     "C:\\Users\\ahrcr\\.nuget\\packages\\swashbuckle.aspnetcore\\6.6.2\\swashbuckle.aspnetcore.6.6.2.nupkg.sha512",
     "C:\\Users\\ahrcr\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.6.2\\swashbuckle.aspnetcore.swagger.6.6.2.nupkg.sha512",
     "C:\\Users\\ahrcr\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.6.2\\swashbuckle.aspnetcore.swaggergen.6.6.2.nupkg.sha512",

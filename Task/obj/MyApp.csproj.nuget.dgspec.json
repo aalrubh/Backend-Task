@@ -54,6 +54,10 @@
               "target": "Package",
               "version": "[15.0.1, )"
             },
+            "Dapper": {
+              "target": "Package",
+              "version": "[2.1.66, )"
+            },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
               "version": "[8.0.21, )"
@@ -79,6 +83,10 @@
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[8.0.7, )"
+            },
+            "SqlKata": {
+              "target": "Package",
+              "version": "[4.0.1, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",

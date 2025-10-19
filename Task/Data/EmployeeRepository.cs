@@ -46,23 +46,21 @@ public class EmployeeRepository : RepositoryBase<EmployeeModel>, IEmployeeReposi
             throw new ApplicationException(error.Message);
         }
     }
-    
+
     public async Task<JSONResponseDTO> InsertEmployees(List<EmployeeDTO> employeeDtos)
     {
         try
         {
             if (!employeeDtos.Any())
-            {
                 return new JSONResponseDTO
                 {
                     StatusCode = HttpStatusCode.BadRequest,
                     Message = "No data to insert"
                 };
-            }
-            
+
             //Converting to Model one by one
             var models = employeeDtos.Select(employeeDto => _mapper.Map<EmployeeModel>(employeeDto)).ToList();
-            
+
             //Bulk Insert
             await MultiCreateAsync(models);
 
@@ -78,14 +76,14 @@ public class EmployeeRepository : RepositoryBase<EmployeeModel>, IEmployeeReposi
         }
     }
 
-    public JSONResponseDTO UpdateEmployee(int id,EmployeeDTO employeeDto)
+    public JSONResponseDTO UpdateEmployee(int id, EmployeeDTO employeeDto)
     {
         try
         {
             var model = _mapper.Map<EmployeeModel>(employeeDto);
             model.Id = id;
             Update(model);
-            
+
 
             return new JSONResponseDTO
             {
@@ -105,16 +103,14 @@ public class EmployeeRepository : RepositoryBase<EmployeeModel>, IEmployeeReposi
         {
             var model = Get(e => e.Id == id, false).FirstOrDefault();
             if (model == null)
-            {
                 return new JSONResponseDTO
                 {
                     StatusCode = HttpStatusCode.NotFound,
                     Message = "Not Found"
                 };
-            }
-            
+
             Delete(model);
-            
+
             return new JSONResponseDTO
             {
                 StatusCode = HttpStatusCode.OK,
@@ -132,24 +128,23 @@ public class EmployeeRepository : RepositoryBase<EmployeeModel>, IEmployeeReposi
         try
         {
             if (!employeeDtos.Any() || !ids.Any() || ids.Count != employeeDtos.Count)
-            {
                 return new JSONResponseDTO
                 {
                     StatusCode = HttpStatusCode.BadRequest,
                     Message = "No data to insert"
                 };
-            }
-            
+
             //Converting to Model one by one
-            var models = employeeDtos.Select((dto, idx) => {
+            var models = employeeDtos.Select((dto, idx) =>
+            {
                 var model = _mapper.Map<EmployeeModel>(dto);
                 model.Id = ids[idx];
                 return model;
             }).ToList();
 
-            
+
             MultiUpdate(models);
-            
+
 
             return new JSONResponseDTO
             {
@@ -169,16 +164,14 @@ public class EmployeeRepository : RepositoryBase<EmployeeModel>, IEmployeeReposi
         {
             var models = Get(e => ids.Contains(e.Id), false).ToList();
             if (!models.Any())
-            {
                 return new JSONResponseDTO
                 {
                     StatusCode = HttpStatusCode.NotFound,
                     Message = "Not Found"
                 };
-            }
-            
+
             MultiDelete(models);
-            
+
             return new JSONResponseDTO
             {
                 StatusCode = HttpStatusCode.OK,

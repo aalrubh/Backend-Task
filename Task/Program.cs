@@ -21,7 +21,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 );
 
 //Token Validation Parameters
-var tokenValidationParameters = new TokenValidationParameters()
+var tokenValidationParameters = new TokenValidationParameters
 {
     ValidateIssuerSigningKey = true,
     IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(builder.Configuration["JWT:Secret"]!)),
@@ -35,7 +35,7 @@ var tokenValidationParameters = new TokenValidationParameters()
 builder.Services.AddSingleton(tokenValidationParameters);
 
 // Add Identity
-builder.Services.AddIdentity<ApplicationUser,IdentityRole>()
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddEntityFrameworkStores<AppDbContext>()
     .AddDefaultTokenProviders();
 
@@ -51,12 +51,12 @@ builder.Services.AddAuthentication(options =>
 // Add JWT Bearer
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
-    {
-        options.SaveToken = true;
-        options.RequireHttpsMetadata = false;
-        options.TokenValidationParameters = tokenValidationParameters;
-    }
-);
+        {
+            options.SaveToken = true;
+            options.RequireHttpsMetadata = false;
+            options.TokenValidationParameters = tokenValidationParameters;
+        }
+    );
 
 builder.Services.AddSwaggerGen();
 
@@ -64,8 +64,6 @@ builder.Services.AddAutoMapper(cfg => cfg.AddProfile<MappingProfile>());
 builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 
 var app = builder.Build();
-
-
 
 // app.UseHttpsRedirection();
 app.MapControllers();

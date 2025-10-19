@@ -143,7 +143,7 @@ public class RepositoryBase<T> : IRepositoryBase<T> where T : class
             throw new ApplicationException(error.Message);
         }
     }
-    
+
     public async Task MultiCreateAsync(List<T> entities)
     {
         try
@@ -172,7 +172,7 @@ public class RepositoryBase<T> : IRepositoryBase<T> where T : class
     {
         try
         {
-             _appDbContext.Set<T>().RemoveRange(entities);
+            _appDbContext.Set<T>().RemoveRange(entities);
         }
         catch (Exception error)
         {
@@ -180,12 +180,12 @@ public class RepositoryBase<T> : IRepositoryBase<T> where T : class
         }
     }
 
-    
+
     public void Save()
     {
         _appDbContext.SaveChanges();
     }
-    
+
     public async Task SaveAsync()
     {
         await _appDbContext.SaveChangesAsync();
