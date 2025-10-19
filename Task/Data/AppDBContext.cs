@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MyApp.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using MyApp.Models.Authentication;
 
 namespace MyApp.Data;
 
@@ -11,4 +12,6 @@ public class AppDbContext : IdentityDbContext<ApplicationUser>
     }
 
     public DbSet<EmployeeModel> Employees { get; set; }
+    
+    public DbSet<RefreshToken> RefreshTokens { get; set; }
 }
