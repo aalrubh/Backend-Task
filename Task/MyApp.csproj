@@ -25,7 +25,6 @@
     <ItemGroup>
         <Folder Include="Database\" />
         <Folder Include="Helpers\" />
-        <Folder Include="Middleware\"/>
         <Folder Include="Migrations\"/>
     </ItemGroup>
 

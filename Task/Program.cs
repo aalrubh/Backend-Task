@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using MyApp.Data;
+using MyApp.Middleware;
 using MyApp.Models;
 using MyApp.Profiles;
 
@@ -62,6 +63,8 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddAutoMapper(cfg => cfg.AddProfile<MappingProfile>());
 builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+builder.Services.AddScoped<ISqlServerConnectionProvider, SqlServerConnectionProvider>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
 var app = builder.Build();
 
@@ -70,6 +73,9 @@ app.MapControllers();
 app.UseAuthentication();
 app.UseAuthorization();
 // app.UseHttpLogging();
+
+app.UseMiddleware<ExceptionHandler>();
+
 
 if (app.Environment.IsDevelopment())
 {

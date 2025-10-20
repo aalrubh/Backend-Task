@@ -9,5 +9,6 @@ public class MappingProfile : Profile
     public MappingProfile()
     {
         CreateMap<EmployeeModel, EmployeeDTO>().ReverseMap();
+        CreateMap<ProductJoinModel, ProductDto>().ReverseMap();
     }
 }
