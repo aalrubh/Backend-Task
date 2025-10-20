@@ -9,12 +9,14 @@
       "MyApp/1.0.0": {
         "dependencies": {
           "AutoMapper": "15.0.1",
+          "Dapper": "2.1.66",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.21",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "8.0.21",
           "Microsoft.EntityFrameworkCore": "9.0.9",
           "Microsoft.EntityFrameworkCore.SqlServer": "9.0.9",
           "Microsoft.EntityFrameworkCore.Tools": "9.0.9",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "8.0.7",
+          "SqlKata": "4.0.1",
           "Swashbuckle.AspNetCore": "6.6.2"
         },
         "runtime": {
@@ -66,6 +68,14 @@
           "lib/netstandard2.0/Azure.Identity.dll": {
             "assemblyVersion": "1.11.4.0",
             "fileVersion": "1.1100.424.31005"
+          }
+        }
+      },
+      "Dapper/2.1.66": {
+        "runtime": {
+          "lib/net8.0/Dapper.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.1.66.48463"
           }
         }
       },
@@ -1825,6 +1835,14 @@
           }
         }
       },
+      "SqlKata/4.0.1": {
+        "runtime": {
+          "lib/net8.0/SqlKata.Core.dll": {
+            "assemblyVersion": "4.0.1.0",
+            "fileVersion": "4.0.1.0"
+          }
+        }
+      },
       "Swashbuckle.AspNetCore/6.6.2": {
         "dependencies": {
           "Microsoft.Extensions.ApiDescription.Server": "6.0.5",
@@ -2186,6 +2204,13 @@
       "sha512": "sha512-Sf4BoE6Q3jTgFkgBkx7qztYOFELBCo+wQgpYDwal/qJ1unBH73ywPztIJKXBXORRzAeNijsuxhk94h0TIMvfYg==",
       "path": "azure.identity/1.11.4",
       "hashPath": "azure.identity.1.11.4.nupkg.sha512"
+    },
+    "Dapper/2.1.66": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-/q77jUgDOS+bzkmk3Vy9SiWMaetTw+NOoPAV0xPBsGVAyljd5S6P+4RUW7R3ZUGGr9lDRyPKgAMj2UAOwvqZYw==",
+      "path": "dapper/2.1.66",
+      "hashPath": "dapper.2.1.66.nupkg.sha512"
     },
     "Humanizer/2.14.1": {
       "type": "package",
@@ -3061,6 +3086,13 @@
       "sha512": "sha512-v/GGlIj2dd7svplFmASWEueu62veKW0MrMtBaZ7QG8aJTSGv2yE+pgUGhXRcQ4nxNOEq/wLBrz1vkth/1SND7A==",
       "path": "nuget.versioning/6.11.0",
       "hashPath": "nuget.versioning.6.11.0.nupkg.sha512"
+    },
+    "SqlKata/4.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-uGGSjc5tHMQCTy17EZxXr74ty4P79rjtuiPWT2VsZQ8v+K6uoLaTyW050ezU3VRBmaL00b5+x0+6OfjA3l9USA==",
+      "path": "sqlkata/4.0.1",
+      "hashPath": "sqlkata.4.0.1.nupkg.sha512"
     },
     "Swashbuckle.AspNetCore/6.6.2": {
       "type": "package",
